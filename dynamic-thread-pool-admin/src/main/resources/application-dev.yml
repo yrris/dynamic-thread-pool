@@ -1,16 +1,5 @@
 server:
-  port: 8091
-
-# 线程池配置
-thread:
-  pool:
-    executor:
-      config:
-        core-pool-size: 20
-        max-pool-size: 50
-        keep-alive-time: 5000
-        block-queue-size: 5000
-        policy: CallerRunsPolicy
+  port: 8089
 
 # 动态线程池所连Redis管理配置
 dynamic:
@@ -23,9 +12,18 @@ dynamic:
         host: 127.0.0.1
         # redis port
         port: 6379
+        pool-size: 10
+        min-idle-size: 5
+        idle-timeout: 30000
+        connect-timeout: 5000
+        retry-attempts: 3
+        retry-interval: 1000
+        ping-interval: 60000
+        keep-alive: true
 
-# 日志
 logging:
   level:
     root: info
   config: classpath:logback-spring.xml
+
+
